@@ -1,3 +1,12 @@
+// Creativity and Exceeding Requirements:
+//
+// This program exceeds the core requirements by using a library of multiple
+// scriptures instead of only one scripture. Each time the program runs,
+// it randomly selects a scripture from the library. The program also hides
+// only words that have not already been hidden, making the memorization
+// process more effective.
+
+
 using System;
 using System.Collections.Generic;
 
@@ -5,13 +14,6 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Creativity and Exceeding Requirements:
-        //
-        // This program exceeds the core requirements by using a library of multiple
-        // scriptures instead of only one scripture. Each time the program runs,
-        // it randomly selects a scripture from the library. The program also hides
-        // only words that have not already been hidden, making the memorization
-        // process more effective.
 
         List<Scripture> scriptures = new List<Scripture>()
         {
@@ -46,7 +48,7 @@ class Program
 
             string userInput = Console.ReadLine();
 
-            if (userInput.ToLower() == "quit")
+            if (string.Equals(userInput, "quit", StringComparison.OrdinalIgnoreCase))
             {
                 break;
             }
@@ -55,10 +57,16 @@ class Program
         }
 
         Console.Clear();
-
         Console.WriteLine(scripture.GetDisplayText());
-
         Console.WriteLine();
-        Console.WriteLine("Good job! Scripture memorization complete.");
+
+        if (scripture.IsCompletelyHidden())
+        {
+            Console.WriteLine("Congratulations! You have memorized the scripture.");
+        }
+        else
+        {
+            Console.WriteLine("Program ended.");
+        }
     }
 }

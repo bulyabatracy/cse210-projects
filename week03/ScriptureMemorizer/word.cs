@@ -1,4 +1,4 @@
-class Word
+public class Word
 {
     private string _text;
     private bool _isHidden;
@@ -23,7 +23,17 @@ class Word
     {
         if (_isHidden)
         {
-            return new string('_', _text.Length);
+            char[] display = _text.ToCharArray();
+
+            for (int i = 0; i < display.Length; i++)
+            {
+                if (char.IsLetter(display[i]))
+                {
+                    display[i] = '_';
+                }
+            }
+
+            return new string(display);
         }
 
         return _text;
